@@ -50,7 +50,7 @@ const oAuthCallback = async (req,res)=>{
         res.cookie('refreshToken', tokens.refresh_token, { httpOnly: true, secure: true });
         res.cookie('accessToken', tokens.access_token, { httpOnly: true, secure: true });
 
-        res.redirect('http://localhost:3000');
+        res.redirect(process.env.CLIENT_HOME_PAGE);
     } catch (err) {
         console.error('Error during authentication process', err);
         res.status(500).send('Internal Server Error');
