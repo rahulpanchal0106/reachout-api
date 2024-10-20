@@ -45,7 +45,12 @@ const oAuthCallback = async (req,res)=>{
 
         await user.save();
         console.log('User saved to database');
-        res.redirect('http://localhost:3000'); // Redirect to the home page
+
+        // Set tokens as cookies
+        res.cookie('refreshToken', tokens.refresh_token, { httpOnly: true, secure: true });
+        res.cookie('accessToken', tokens.access_token, { httpOnly: true, secure: true });
+
+        res.redirect('http://localhost:3000');
     } catch (err) {
         console.error('Error during authentication process', err);
         res.status(500).send('Internal Server Error');

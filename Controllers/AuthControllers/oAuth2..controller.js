@@ -1,7 +1,7 @@
 const {google} = require('googleapis');
 const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
-const GOOGLE_REDIRECT_URI = "http://localhost:8080/auth/google/callback";
+const GOOGLE_REDIRECT_URI = process.env.PROD+"/auth/google/callback";
 const UserModel = require("../../Models/user.model")
 
 const oAuth2Controller = async (req, res) => {
